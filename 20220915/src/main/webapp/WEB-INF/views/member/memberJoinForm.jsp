@@ -63,7 +63,7 @@
 		let pass2 = document.getElementById("pwc").value;
 		let idChecked = document.getElementById("btn").value;
 		
-		if(idChecked =='No') {
+		if(idChecked =='NO') {
 			alert("아이디 중복체크를 해주세요.");
 			return false;
 		}
@@ -78,7 +78,7 @@
 		
 		return true;
 	}
-	function idCheck() {// Ajax를 이용해서 id 중복체크를 한다.
+	function idCheck() { // Ajax를 이용해서 id 중복체크를 한다.
 		let id = document.getElementById("memberId").value;
 		
 		const xhttp = new XMLHttpRequest();
