@@ -21,12 +21,17 @@ public class MemberInsert implements Command {
 		vo.setMemberTel(request.getParameter("memberTel"));
 		vo.setMemberAuthor(request.getParameter("memberAuthor"));
 		int n = dao.memberInsert(vo);
+		String viewPage = null; //돌려줄페이지
 		if(n != 0) {
-			request.setAttribute("message", "정상적으로 입력이 완료.");
+//			request.setAttribute("message", "정상적으로 입력이 완료.");
+			viewPage = "memberSelectList.do";
 		} else {
-			request.setAttribute("message", "정상적으로 입력이 실패.");
+//			request.setAttribute("message", "정상적으로 입력이 실패.");
+			viewPage = "member/memberMessage";
 		}
-		return "member/memberMessage";
+//		return "member/memberMessage";
+		return viewPage;
+		
 	}
 
 }
