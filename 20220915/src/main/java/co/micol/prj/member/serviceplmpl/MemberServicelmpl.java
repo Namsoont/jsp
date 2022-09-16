@@ -134,14 +134,14 @@ public class MemberServicelmpl implements MemberService {
 	@Override
 	public boolean isMemberIdCheck(String id) {
 		// 아이디 중복 체크 존재하면 false,
-		boolean b = true;
+		boolean b = false;
 		String sql = "SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = ?";
 		try {
 			psmt = dao.conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			if(!rs.next()) {
-				b = false; // 존재하면
+				b = true; // 없으면
 			}
 		} catch (SQLException e) {
 			

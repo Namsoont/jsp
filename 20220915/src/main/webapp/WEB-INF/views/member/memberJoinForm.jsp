@@ -83,7 +83,7 @@
 		
 		const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
-        	if (this.readyState == 4 && this.status == 200) {
+        	if (this.readyState == 4 && this.status == 200) { //성공하면 Call Back함수
         	      if(this.responseText == '1'){
         	    	  alert("사용 할 수 있는 아이디 입니다.");
         	    	  document.getElementById("btn").value = "Yes";
@@ -97,7 +97,13 @@
         }
         xhttp.open("GET", "ajaxMemberIdCheck.do?id="+id);
         xhttp.send();
+        /*
+        //fetch를 사용한 ajax
+        fatch('ajaxMemberIdCheck.do?id='+ id)
+        .then(response=>console.log(response)); //이곳에 Call Back함수를 작성하면 됨
+        */
 	}
+	
 </script>
 </body>
 </html>
