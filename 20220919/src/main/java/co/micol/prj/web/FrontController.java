@@ -13,57 +13,58 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.micol.prj.Main;
 import co.micol.prj.common.Command;
-import co.micol.prj.member.command.MemberDelete;
-import co.micol.prj.member.command.MemberEdit;
-import co.micol.prj.member.command.MemberJoinForm;
-import co.micol.prj.member.command.MemberSelect;
-import co.micol.prj.member.command.MemberSelectList;
+import co.micol.prj.member.command.MemberLogin;
+import co.micol.prj.member.command.MemberLoginForm;
+import co.micol.prj.member.command.MemberLogout;
+import co.micol.prj.notice.command.NoticeInsert;
+import co.micol.prj.notice.command.NoticeSelectList;
+import co.micol.prj.notice.command.NoticeWriteForm;
+import co.micol.prj.notice.command.noticeSelect;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Command> map = new HashMap<String, Command>();
-
+	
     public FrontController() {
         super();
     }
 
 	public void init(ServletConfig config) throws ServletException {
-		// �슂泥�怨� 紐낅졊�쓣 留ㅽ븨�븯�뒗 怨�
-		map.put("/main.do", new Main()); //처음오는 페이지를 돌려준다.
-		map.put("/memberSelectList.do", new MemberSelectList()); //멤버목록보기
-		map.put("/memberJoinForm.do", new MemberJoinForm()); //멤버입력 폼 호출
-		map.put("/memberSelect.do", new MemberSelect()); //멤버 상세 정보
-		map.put("/memberDelete.do", new MemberDelete()); //멤버 삭제
-		map.put("/memberEdit.do", new MemberEdit());  //멤버정보 변경
-		
+		map.put("/main.do", new Main());
+		map.put("/noticeSelectList.do", new NoticeSelectList());
+		map.put("/noticeWriteForm.do", new NoticeWriteForm());
+		map.put("/noticeInsert.do", new NoticeInsert());
+		map.put("/memberLoginForm.do", new MemberLoginForm());
+		map.put("/memberLogin.do", new MemberLogin()); //�α���
+		map.put("/memberLogout.do", new MemberLogout()); //�α��ξƿ�
+		map.put("/noticeSelect.do", new noticeSelect());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 요청을 분석하고, 실행하고, 결과를 돌려주는 곳
-		request.setCharacterEncoding("utf-8");  //한글 깨짐 방지
-		String uri = request.getRequestURI(); 
+		request.setCharacterEncoding("utf-8");
+		
+		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String page = uri.substring(contextPath.length());
 		
 		Command command = map.get(page);
 		String viewPage = command.exec(request, response);
 		
-		if(!viewPage.endsWith(".do")) {
-			if(viewPage.startsWith("ajax:")) {
-				//ajax 泥섎━
+		if (!viewPage.endsWith(".do")) {
+			
+			if (viewPage.startsWith("ajax:")) {
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(viewPage.substring(5));
 				return;
-			}else {
+			} else {
 				viewPage = "/WEB-INF/views/" + viewPage + ".jsp";
 				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 				dispatcher.forward(request, response);
 			}
-		}else {
+		} else {
 			response.sendRedirect(viewPage);
 		}
-		
 	}
 
 }

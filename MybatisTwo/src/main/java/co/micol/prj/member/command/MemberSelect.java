@@ -12,7 +12,7 @@ public class MemberSelect implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ë©¤ë²„ ìƒì„¸ ì •ë³´
+		// ¸â¹ö»ó¼¼Á¤º¸
 		MemberService dao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
 		vo.setMemberId(request.getParameter("memberId"));

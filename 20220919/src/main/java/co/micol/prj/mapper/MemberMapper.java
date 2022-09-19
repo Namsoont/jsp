@@ -1,4 +1,4 @@
-package co.micol.prj.mybatis.mapper;
+package co.micol.prj.mapper;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import co.micol.prj.member.service.MemberVO;
 
 public interface MemberMapper {
 	List<MemberVO> memberSelectList();
-	MemberVO memberSelect(MemberVO vo);  //ÇÑ¸í, ·Î±×ÀÎ Ã¼Å©
+	MemberVO memberSelect(MemberVO vo);  // í•œ ëª… ì¡°íšŒ
 	int memberInsert(MemberVO vo);
 	int memberUpdate(MemberVO vo);
 	int memberDelete(MemberVO vo);
 	
-	boolean isIdCheck(String id);  //¾ÆÀÌµğ Áßº¹ Ã¼Å©
+	boolean isIdCheck(String id);  // ì•„ì´ë”” ì¤‘ë³µ ì²´í¬
 }

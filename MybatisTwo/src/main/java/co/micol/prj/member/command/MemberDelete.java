@@ -12,7 +12,7 @@ public class MemberDelete implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ë©¤ë²„ì‚­ì œ
+		// ¸â¹ö»èÁ¦
 		MemberService dao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
 		vo.setMemberId(request.getParameter("memberId"));

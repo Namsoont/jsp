@@ -1,5 +1,8 @@
 package co.micol.prj.member.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,22 +11,17 @@ import co.micol.prj.member.service.MemberService;
 import co.micol.prj.member.service.MemberVO;
 import co.micol.prj.member.serviceImpl.MemberServiceImpl;
 
-public class MemberEdit implements Command {
+public class MemberSelectList implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ∏‚πˆ ¡§∫∏ ºˆ¡§
+		// Î©§Î≤Ñ Î™©Î°ù Í∞ÄÏ†∏Ïò§Í∏∞
 		MemberService dao = new MemberServiceImpl();
-		MemberVO vo = new MemberVO();
-		vo.setMemberId(request.getParameter("memberId"));
-		vo.setMemberName(request.getParameter("memberName"));
-		vo.setMemberPassword(request.getParameter("memberPassword"));
-		vo.setMemberTel(request.getParameter("memberTel"));
-		vo.setMemberAuthor(request.getParameter("memberAuthor"));
+		List<MemberVO> list = new ArrayList<>();
+		list = dao.memberSelectList();
 		
-		dao.memberUpdate(vo);
-		
-		return "memberSelectList.do";
+		request.setAttribute("members", list);
+		return "member/memberSelectList";
 	}
 
 }

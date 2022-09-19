@@ -9,7 +9,7 @@ public class MemberJoinForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ¸â¹öÀÔ·Â Æû
+		// ë©¤ë²„ ì…ë ¥ í¼.
 		return "member/memberJoinForm";
 	}
 

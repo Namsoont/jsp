@@ -5,12 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.micol.prj.common.Command;
 
-public class MemberJoinForm implements Command {
+public class MemberLoginForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ¸â¹öÀÔ·Â Æû
-		return "member/memberJoinForm";
+		return "member/memberLoginForm";
 	}
 
 }

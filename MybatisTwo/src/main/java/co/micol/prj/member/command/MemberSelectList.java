@@ -15,7 +15,7 @@ public class MemberSelectList implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ë©¤ë²„ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
+		// ¸â¹ö ¸ñ·Ï °¡Á®¿À±â
 		MemberService dao = new MemberServiceImpl();
 		List<MemberVO> list = new ArrayList<>();
 		list = dao.memberSelectList();

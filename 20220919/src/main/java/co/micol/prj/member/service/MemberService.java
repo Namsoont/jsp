@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface MemberService {
 	List<MemberVO> memberSelectList();
-	MemberVO memberSelect(MemberVO vo);  //ÇÑ¸í·Î±×ÀÎÃ¼Å©
+	MemberVO memberSelect(MemberVO vo);  // í•œ ëª… ì¡°íšŒ
 	int memberInsert(MemberVO vo);
 	int memberUpdate(MemberVO vo);
 	int memberDelete(MemberVO vo);
 	
-	boolean isIdCheck(String id);  //¾ÆÀÌµğ Áßº¹Ã¼Å©
+	boolean isIdCheck(String id);  // ì•„ì´ë”” ì¤‘ë³µ ì²´í¬
 }

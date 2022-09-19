@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.micol.prj.mapper.NoticeMapper">
+	<select id="noticeSelectList" resultType="co.micol.prj.notice.service.NoticeVO">
+		SELECT * FROM NOTICE ORDER BY NOTICE_ID DESC
+	</select>
+
+	<select id="noticeSelect" resultType="co.micol.prj.notice.service.NoticeVO">
+		SELECT * FROM NOTICE WHERE NOTICE_ID = #{noticeId}
+	</select>
+
+	<!-- db에서 제공하는 sequence를 써도 되고 mybatis에서 제공하는 -->
+	<insert id="noticeInsert" parameterType="co.micol.prj.notice.service.NoticeVO">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+			SELECT CASE WHEN MAX(NOTICE_ID) IS NULL THEN 1 ELSE
+			MAX(NOTICE_ID) + 1 END AS ID
+			FROM NOTICE
+		</selectKey>
+		INSERT INTO NOTICE
+		VALUES(#{noticeId}, #{noticeWriter},
+		#{noticeTitle}, #{noticeSubject},
+		#{noticeDate}, #{noticeAttech},
+		#{noticeAttechDirectory}, #{noticeHit})
+	</insert>
+
+	<update id="noticeUpdate" parameterType="co.micol.prj.notice.service.NoticeVO">
+		UPDATE NOTICE
+		<set>
+			<if test="noticeWriter != null"> NOTICE_WRITER = #{noticeWriter},</if>
+			<if test="noticeTitle != null"> NOTICE_TITLE = #{noticeTitle},</if>
+			<if test="noticeSubject != null"> NOTICE_SUBJECT = #{noticeSubject},</if>
+			<if test="noticeDate != null"> NOTICE_DATE = #{noticeDate},</if>
+			<if test="noticeAttech != null"> NOTICE_ATTECH = #{noticeAttech},</if>
+			<if test="noticeAttechDirectory != null"> NOTICE_ATTECH_DIRECTORY = #{noticeAttechDirectory}</if>
+		</set>
+		WHERE NOTICE_ID = #{noticeId}
+	</update>
+
+	<delete id="noticeDelete" parameterType="co.micol.prj.notice.service.NoticeVO">
+		DELETE FROM NOTICE WHERE NOTICE_ID = #{noticeId}
+	</delete>
+
+	<update id="noticeHitUpdate" parameterType="int">
+		update notice set notice_hit = notice_hit + 1 where notice_id = #{id}
+	</update>
+
+	<select id="noticeSearchList" resultType="co.micol.prj.notice.service.NoticeVO">
+
+	</select>
+</mapper>

@@ -8,16 +8,16 @@ import co.micol.prj.member.service.MemberService;
 import co.micol.prj.member.service.MemberVO;
 import co.micol.prj.member.serviceImpl.MemberServiceImpl;
 
-public class MemberEdit implements Command {
+public class MemberUpdate implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ¸â¹ö Á¤º¸ ¼öÁ¤
+		// ë©¤ë²„ ì •ë³´ ìˆ˜ì •
 		MemberService dao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
 		vo.setMemberId(request.getParameter("memberId"));
-		vo.setMemberName(request.getParameter("memberName"));
 		vo.setMemberPassword(request.getParameter("memberPassword"));
+		vo.setMemberName(request.getParameter("memberName"));
 		vo.setMemberTel(request.getParameter("memberTel"));
 		vo.setMemberAuthor(request.getParameter("memberAuthor"));
 		

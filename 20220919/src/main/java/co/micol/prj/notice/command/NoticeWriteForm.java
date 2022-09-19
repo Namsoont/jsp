@@ -1,16 +1,16 @@
-package co.micol.prj.member.command;
+package co.micol.prj.notice.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.micol.prj.common.Command;
 
-public class MemberJoinForm implements Command {
+public class NoticeWriteForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ¸â¹öÀÔ·Â Æû
-		return "member/memberJoinForm";
+		// ê¸€ì“°ê¸° form í˜¸ì¶œ
+		return "notice/noticeWriteForm";
 	}
 
 }

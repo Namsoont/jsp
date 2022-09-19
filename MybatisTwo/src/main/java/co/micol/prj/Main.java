@@ -9,7 +9,7 @@ public class Main implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ì‹œì‘í•˜ëŠ” ê³³
+		// ½ÃÀÛÇÏ´Â °÷
 		return "main/main";
 	}
 

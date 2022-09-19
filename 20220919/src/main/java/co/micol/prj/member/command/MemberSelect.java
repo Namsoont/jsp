@@ -8,22 +8,19 @@ import co.micol.prj.member.service.MemberService;
 import co.micol.prj.member.service.MemberVO;
 import co.micol.prj.member.serviceImpl.MemberServiceImpl;
 
-public class MemberEdit implements Command {
+public class MemberSelect implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ¸â¹ö Á¤º¸ ¼öÁ¤
+		// ë©¤ë²„ í•œëª… ìƒì„¸ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+		
 		MemberService dao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
 		vo.setMemberId(request.getParameter("memberId"));
-		vo.setMemberName(request.getParameter("memberName"));
-		vo.setMemberPassword(request.getParameter("memberPassword"));
-		vo.setMemberTel(request.getParameter("memberTel"));
-		vo.setMemberAuthor(request.getParameter("memberAuthor"));
+		MemberVO memberVO = dao.memberSelect(vo);
 		
-		dao.memberUpdate(vo);
-		
-		return "memberSelectList.do";
+		request.setAttribute("member", memberVO);
+		return "member/memberSelect";
 	}
 
 }
